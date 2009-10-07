@@ -3,7 +3,7 @@ end
 
 describe AccountsController do
   describe "POST create" do
-    describe "with valid attributes" do
+    context "with valid attributes" do
       it "creates an account" do
       end
       it "redirects to the index" do
@@ -11,4 +11,3 @@ describe AccountsController do
     end
   end
 end
-
