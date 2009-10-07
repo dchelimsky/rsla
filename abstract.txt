@@ -1,0 +1,3 @@
+RSpec and Cucumber: Beyond the Basics
+
+Many teams are using RSpec and Cucumber these days, but few are really exploiting their power and expressiveness. In this talk, David will present some of the lesser known and used power-user features of RSpec and Cucumber
