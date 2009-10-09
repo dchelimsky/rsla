@@ -1,3 +1,5 @@
+require 'money'
+
 class Account
   attr_reader :balance
 
