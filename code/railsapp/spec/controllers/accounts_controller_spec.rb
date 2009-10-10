@@ -8,7 +8,7 @@ describe AccountsController do
 
   describe "GET index" do
     it "assigns all accounts as @accounts" do
-      Account.stub!(:find).with(:all).and_return([mock_account])
+      Account.stub(:find).with(:all).and_return([mock_account])
       get :index
       assigns[:accounts].should == [mock_account]
     end
@@ -16,7 +16,7 @@ describe AccountsController do
 
   describe "GET show" do
     it "assigns the requested account as @account" do
-      Account.stub!(:find).with("37").and_return(mock_account)
+      Account.stub(:find).with("37").and_return(mock_account)
       get :show, :id => "37"
       assigns[:account].should equal(mock_account)
     end
@@ -24,14 +24,15 @@ describe AccountsController do
   
   describe "GET new" do
     it "assigns a new account as @account" do
+      Account.stub(:new).and_return(mock_account)
       get :new
-      assigns[:account].should be_a_new(Account)
+      assigns[:account].should equal(mock_account)
     end
   end
 
   describe "GET edit" do
     it "assigns the requested account as @account" do
-      Account.stub!(:find).with("37").and_return(mock_account)
+      Account.stub(:find).with("37").and_return(mock_account)
       get :edit, :id => "37"
       assigns[:account].should equal(mock_account)
     end
@@ -41,13 +42,13 @@ describe AccountsController do
 
     describe "with valid params" do
       it "assigns a newly created account as @account" do
-        Account.stub!(:new).with({'these' => 'params'}).and_return(mock_account(:save => true))
+        Account.stub(:new).with({'these' => 'params'}).and_return(mock_account(:save => true))
         post :create, :account => {:these => 'params'}
         assigns[:account].should equal(mock_account)
       end
 
       it "redirects to the created account" do
-        Account.stub!(:new).and_return(mock_account(:save => true))
+        Account.stub(:new).and_return(mock_account(:save => true))
         post :create, :account => {}
         response.should redirect_to(account_url(mock_account))
       end
@@ -55,13 +56,13 @@ describe AccountsController do
 
     describe "with invalid params" do
       it "assigns a newly created but unsaved account as @account" do
-        Account.stub!(:new).with({'these' => 'params'}).and_return(mock_account(:save => false))
+        Account.stub(:new).with({'these' => 'params'}).and_return(mock_account(:save => false))
         post :create, :account => {:these => 'params'}
         assigns[:account].should equal(mock_account)
       end
 
       it "re-renders the 'new' template" do
-        Account.stub!(:new).and_return(mock_account(:save => false))
+        Account.stub(:new).and_return(mock_account(:save => false))
         post :create, :account => {}
         response.should render_template('new')
       end
@@ -79,13 +80,13 @@ describe AccountsController do
       end
 
       it "assigns the requested account as @account" do
-        Account.stub!(:find).and_return(mock_account(:update_attributes => true))
+        Account.stub(:find).and_return(mock_account(:update_attributes => true))
         put :update, :id => "1"
         assigns[:account].should equal(mock_account)
       end
 
       it "redirects to the account" do
-        Account.stub!(:find).and_return(mock_account(:update_attributes => true))
+        Account.stub(:find).and_return(mock_account(:update_attributes => true))
         put :update, :id => "1"
         response.should redirect_to(account_url(mock_account))
       end
@@ -99,13 +100,13 @@ describe AccountsController do
       end
 
       it "assigns the account as @account" do
-        Account.stub!(:find).and_return(mock_account(:update_attributes => false))
+        Account.stub(:find).and_return(mock_account(:update_attributes => false))
         put :update, :id => "1"
         assigns[:account].should equal(mock_account)
       end
 
       it "re-renders the 'edit' template" do
-        Account.stub!(:find).and_return(mock_account(:update_attributes => false))
+        Account.stub(:find).and_return(mock_account(:update_attributes => false))
         put :update, :id => "1"
         response.should render_template('edit')
       end
@@ -121,7 +122,7 @@ describe AccountsController do
     end
 
     it "redirects to the accounts list" do
-      Account.stub!(:find).and_return(mock_account(:destroy => true))
+      Account.stub(:find).and_return(mock_account(:destroy => true))
       delete :destroy, :id => "1"
       response.should redirect_to(accounts_url)
     end
