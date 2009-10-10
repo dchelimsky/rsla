@@ -13,7 +13,7 @@ describe Account do
       account.should have_a_balance_of(Money.new(0, :BLR))
     end
 
-    it "does not have a non- balance" do
+    it "does not have zero balance" do
       account = Account.new
       account.should_not have_a_balance_of(Money.new(10, :BLR))
     end
