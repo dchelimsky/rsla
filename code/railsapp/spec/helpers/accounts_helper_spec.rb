@@ -1,34 +1,9 @@
 require 'spec_helper'
 
-module WrappedAssertions
-  attr_reader :assertion_error
-  
-  def self.extension_modules
-    @extension_modules ||= [Test::Unit::Assertions]
-  end
-  
-  def self.add_assertions(mod)
-    extension_modules << mod
-  end
-  
-  def wrap_assertion
-    WrappedAssertions.extension_modules.map {|mod| extend mod}
-    begin
-      yield
-      true
-    rescue Exception => e
-      @assertion_error = e
-      false
-    end
-  end
-end
-
-WrappedAssertions.add_assertions ActionController::TestCase::Assertions
-
 Spec::Matchers.define :match_dom do |expected|
-  extend WrappedAssertions
+  extend ActionController::TestCase::Assertions
   match do |actual|
-    wrap_assertion do
+    wrapped_assertion do
       assert_dom_equal expected, actual
     end
   end
