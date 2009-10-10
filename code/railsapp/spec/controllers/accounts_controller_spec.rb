@@ -21,12 +21,11 @@ describe AccountsController do
       assigns[:account].should equal(mock_account)
     end
   end
-
+  
   describe "GET new" do
     it "assigns a new account as @account" do
-      Account.stub!(:new).and_return(mock_account)
       get :new
-      assigns[:account].should equal(mock_account)
+      assigns[:account].should be_a_new(Account)
     end
   end
 
