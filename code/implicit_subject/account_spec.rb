@@ -8,6 +8,6 @@ describe Account do
   end
 
   context "when first created" do
-    it { should have_a_balance_of(Money.new(0, :BLR))}
+    it { should have_a_balance_of(0, :BLR)}
   end
 end
