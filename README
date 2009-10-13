@@ -1,0 +1,15 @@
+This repo contains the slides (keynote and pdf) and (almost) all of the
+code examples from my presentation at Rails Summit Latin America, 2009,
+in São Paulo, Brasil.
+
+== .autotest
+
+In the talk I did a demo of spork + autotest (autospec). Afterwards, an
+attendee asked about how helpful autospec is in larger apps, and I
+explained that it is possible to limit the scope of the files which
+autotest observes.
+
+I included my .autotest file (from my home directory), which contains
+two plugins for autotest that demonstrate how this works and also how
+I connect autotest to growl (I got the growl hook from a blog post 
+somewhere).
