@@ -24,9 +24,8 @@ describe AccountsController do
   
   describe "GET new" do
     it "assigns a new account as @account" do
-      Account.stub(:new).and_return(mock_account)
       get :new
-      assigns[:account].should equal(mock_account)
+      assigns[:account].should be_a_new_record
     end
   end
 
@@ -50,7 +49,7 @@ describe AccountsController do
       it "redirects to the created account" do
         Account.stub(:new).and_return(mock_account(:save => true))
         post :create, :account => {}
-        response.should redirect_to(account_url(mock_account))
+        response.should redirect_to(accounts_url)
       end
     end
 
