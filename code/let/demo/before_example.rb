@@ -19,7 +19,7 @@ describe Account do
     it "allows a withdrawal of 10 BLR" do
       account = Account.new(10, :BRL)
       expect { account.withdraw(10, :BLR) }.
-        to_not raise_error(InsufficientFunds)
+        to_not raise_error
     end
   end
 end
